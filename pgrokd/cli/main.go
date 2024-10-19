@@ -43,7 +43,5 @@ func main() {
 	proxies := reverseproxy.NewCluster()
 	go startSSHServer(log.Default(), config.SSHD.Port, config.Proxy, db, proxies)
 	go startProxyServer(log.Default(), config.Proxy.Port, proxies)
-	go startWebServer(config, db)
-
 	select {}
 }

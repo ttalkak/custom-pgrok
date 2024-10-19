@@ -18,7 +18,7 @@ func startProxyServer(logger *log.Logger, port int, proxies *reverseproxy.Cluste
 	f.Any("/{**}", func(w http.ResponseWriter, r *http.Request) {
 		proxy, ok := proxies.Get(r.Host)
 		if !ok {
-			w.WriteHeader(http.StatusBadGateway)
+			w.WriteHeader(http.StatusOK)
 			_, _ = w.Write([]byte("No reverse proxy is available for the host: " + r.Host))
 			return
 		}
